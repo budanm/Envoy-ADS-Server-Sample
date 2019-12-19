@@ -90,7 +90,7 @@ func MakeCluster(mode string, clusterName string) *v2.Cluster {
 		//EdsClusterConfig: &v2.Cluster_EdsClusterConfig{
 		//	EdsConfig: edsSource,
 		//},
-		LoadAssignment:	MakeEndpoint("", 0),
+		LoadAssignment:	MakeEndpoint(clusterName, 0),
 		LbPolicy: v2.Cluster_ROUND_ROBIN,
 	}
 }
