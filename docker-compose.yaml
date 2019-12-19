@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+
+  edge-envoy:
+    build:
+      context: ./front-envoy
+      dockerfile: Dockerfile
+    networks:
+      - envoymesh
+    links:
+      - "xds_cluster"
+    ports:
+      - "19000:19000"
+
+  xds_cluster:
+    build:
+      context: ./management-server
+      dockerfile: Dockerfile
+    environment:
+       - MAX_SNAPSHOT_ITERATIONS=1
+    networks:
+      envoymesh:
+        aliases:
+          - xds_cluster
+    ports: 
+      - "18000:18000"
+      - "18080:18080"
+
+networks:
+  envoymesh: {}
