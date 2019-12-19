@@ -47,7 +47,7 @@ var (
 	RefreshDelay = 500 * time.Millisecond
 )
 const backendHost = "httpbin.org"
-const backendPort = 0
+const backendPort = 80
 
 // MakeEndpoint creates a localhost endpoint on a given port.
 func MakeEndpoint(clusterName string, port uint32) *v2.ClusterLoadAssignment {
